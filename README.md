@@ -6,19 +6,19 @@
 ## Chức Năng Chính
 - **Thêm sinh viên**: Nhập thông tin sinh viên mới vào hệ thống.
   
-  ![Thêm sinh viên](screenshots/Nhập thông tin sinh viên.png)
+![Thêm sinh viên](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Nh%E1%BA%ADp%20th%C3%B4ng%20tin%20sinh%20vi%C3%AAn.png)
 
 - **Cập nhật sinh viên**: Chỉnh sửa thông tin sinh viên hiện có.
 
-  ![Cập nhật thông tin](screenshots/Cập nhật thông tin.png)
+![Cập nhật thông tin](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/C%E1%BA%ADp%20nh%E1%BA%ADt%20th%C3%B4ng%20tin.png)
 
 - **Tìm kiếm sinh viên**: Tìm kiếm sinh viên theo MSSV hoặc họ tên.
 
-  ![Tìm kiếm sinh viên](screenshots/Tìm kiếm sinh viên.png)
+![Tìm kiếm sinh viên](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/T%C3%ACm%20ki%E1%BA%BFm%20sinh%20vi%C3%AAn.png)
 
 - **Xóa sinh viên**: Xóa một sinh viên khỏi hệ thống.
 
-  ![Xóa thông tin sinh viên](screenshots/Xóa thông tin sinh viên.png)
+![Xóa thông tin sinh viên](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/X%C3%B3a%20th%C3%B4ng%20tin%20sinh%20vi%C3%AAn.png)
 
 ## Cấu Trúc Dữ Liệu Sinh Viên
 Mỗi sinh viên có các thuộc tính sau:
