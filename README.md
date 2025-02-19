@@ -5,12 +5,19 @@
 
 ## Chức Năng Chính
 - **Thêm sinh viên**: Nhập thông tin sinh viên mới vào hệ thống.
+  
 ![Thêm sinh viên](screenshots/Nhập thông tin sinh viên.png)
+
 - **Cập nhật sinh viên**: Chỉnh sửa thông tin sinh viên hiện có.
+
 ![Cập nhật thông tin](screenshots/Cập nhật thông tin.png)
+
 - **Tìm kiếm sinh viên**: Tìm kiếm sinh viên theo MSSV hoặc họ tên.
+
 ![Tìm kiếm sinh viên](screenshots/Tìm kiếm sinh viên.png)
+
 - **Xóa sinh viên**: Xóa một sinh viên khỏi hệ thống.
+
 ![Xóa thông tin sinh viên](screenshots/Xóa thông tin sinh viên.png)
 
 ## Cấu Trúc Dữ Liệu Sinh Viên
