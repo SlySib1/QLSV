@@ -1,14 +1,17 @@
 [
     {
-        "Department":"Khoa Luật"
+        "Department": "Khoa luật"
     },
     {
-        "Department":"Khoa Tiếng Anh thương mại"
+        "Department": "Khoa Tiếng Anh thương mại"
     },
     {
-        "Department":"Khoa Tiếng Nhật"
+        "Department": "Khoa Tiếng Nhật"
     },
     {
-        "Department":"Khoa Tiếng Pháp"
+        "Department": "Khoa Tiếng Pháp"
+    },
+    {
+        "Department": "khoa hoa"
     }
 ]

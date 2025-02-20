@@ -5,7 +5,6 @@ const path = require("path");
 
 const STUDENT_FILE = path.join(__dirname, "data", "students.json");
 
-
 function saveStudents(students) {
     fs.writeFileSync(STUDENT_FILE, JSON.stringify(students, null, 4), "utf-8");
 }
@@ -105,7 +104,7 @@ function updateStudent() {
                 console.log("Tên khoa không hợp lệ!");
                 return;
             }
-            s.Corse= prompt("Nhập khóa mới: ").trim();
+            s.Corse = prompt("Nhập khóa mới: ").trim();
             s.Program = prompt("Nhập chương trình mới: ").trim();
             s.Address = prompt("Nhập địa chỉ mới: ").trim();
             s.Status = prompt("Nhập tình trạng sinh viên mới: ").trim();

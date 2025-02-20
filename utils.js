@@ -51,4 +51,4 @@ function isValidStudentStatus(status) {
     return validStatuses.some(s => s.status === status);
 }
 
-module.exports = { loadStudents, isValidEmail, isValidPhone, isValidDepartment, isValidStudentStatus };
+module.exports = { loadStudents, loadStatus, loadDepartment, isValidEmail, isValidPhone, isValidDepartment, isValidStudentStatus };
