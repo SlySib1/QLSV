@@ -1,17 +1,10 @@
 const fs = require("fs");
 const prompt = require("prompt-sync")();
-const { isValidEmail, isValidPhone, isValidDepartment, isValidStudentStatus } = require("./utils");
+const { loadStudents, isValidEmail, isValidPhone, isValidDepartment, isValidStudentStatus } = require("./utils");
+const path = require("path");
 
-const STUDENT_FILE = "students.json";
+const STUDENT_FILE = path.join(__dirname, "data", "students.json");
 
-function loadStudents() {
-    try {
-        const data = fs.readFileSync(STUDENT_FILE, "utf-8");
-        return JSON.parse(data);
-    } catch (error) {
-        return [];
-    }
-}
 
 function saveStudents(students) {
     fs.writeFileSync(STUDENT_FILE, JSON.stringify(students, null, 4), "utf-8");
@@ -58,16 +51,16 @@ function addStudent() {
 
     const newStudent = {
         MSSV: mssv,
-        "Họ tên": name,
-        "Ngày sinh": dob,
-        "Giới tính": gender,
+        Name: name,
+        Dob: dob,
+        Gender: gender,
         Email: email,
-        "Số điện thoại": phone,
-        "Khoa": department,
-        "Khóa": course,
-        "Chương trình": program,
-        "Địa chỉ": address,
-        "Tình trạng sinh viên": status
+        Phone: phone,
+        Department: department,
+        Course: course,
+        Program: program,
+        Adress: address,
+        Status: status
     };
     
     students.push(newStudent);
@@ -94,29 +87,29 @@ function updateStudent() {
 
     for (let s of students) {
         if (s.MSSV === mssv) {
-            s["Họ tên"] = prompt("Nhập họ tên mới: ").trim();
-            s["Ngày sinh"] = prompt("Nhập ngày tháng năm sinh mới (DD/MM/YYYY): ").trim();
-            s["Giới tính"] = prompt("Nhập giới tính mới (Nam/Nữ): ").trim();
+            s.Name = prompt("Nhập họ tên mới: ").trim();
+            s.Dob = prompt("Nhập ngày tháng năm sinh mới (DD/MM/YYYY): ").trim();
+            s.Gender = prompt("Nhập giới tính mới (Nam/Nữ): ").trim();
             s.Email = prompt("Nhập email mới: ").trim();
             if (!isValidEmail(s.Email)) {
                 console.log("Email không hợp lệ!");
                 return;
             }
-            s["Số điện thoại"] = prompt("Nhập số điện thoại mới: ").trim();
-            if (!isValidPhone(s["Số điện thoại"])) {
+            s.Phone = prompt("Nhập số điện thoại mới: ").trim();
+            if (!isValidPhone(s.Phone)) {
                 console.log("Số điện thoại không hợp lệ!");
                 return;
             }
-            s["Khoa"] = prompt("Nhập khoa mới: ").trim();
-            if (!isValidDepartment(s["Khoa"])) {
+            s.Department = prompt("Nhập khoa mới: ").trim();
+            if (!isValidDepartment(s.Department)) {
                 console.log("Tên khoa không hợp lệ!");
                 return;
             }
-            s["Khóa"] = prompt("Nhập khóa mới: ").trim();
-            s["Chương trình"] = prompt("Nhập chương trình mới: ").trim();
-            s["Địa chỉ"] = prompt("Nhập địa chỉ mới: ").trim();
-            s["Tình trạng sinh viên"] = prompt("Nhập tình trạng sinh viên mới: ").trim();
-            if (!isValidStudentStatus(s["Tình trạng sinh viên"])) {
+            s.Corse= prompt("Nhập khóa mới: ").trim();
+            s.Program = prompt("Nhập chương trình mới: ").trim();
+            s.Address = prompt("Nhập địa chỉ mới: ").trim();
+            s.Status = prompt("Nhập tình trạng sinh viên mới: ").trim();
+            if (!isValidStudentStatus(s.Status)) {
                 console.log("Tình trạng sinh viên không hợp lệ!");
                 return;
             }
@@ -131,7 +124,7 @@ function updateStudent() {
 function searchStudent() {
     const students = loadStudents();
     const keyword = prompt("Nhập MSSV hoặc tên sinh viên: ").trim().toLowerCase();
-    const results = students.filter(s => s.MSSV.toLowerCase().includes(keyword) || s["Họ tên"].toLowerCase().includes(keyword));
+    const results = students.filter(s => s.MSSV.toLowerCase().includes(keyword) || s.Name.toLowerCase().includes(keyword));
 
     if (results.length > 0) {
         console.log("Kết quả tìm kiếm:");
