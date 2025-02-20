@@ -1,5 +1,5 @@
 const prompt = require("prompt-sync")();
-const { addStudent, deleteStudent, updateStudent, searchStudent } = require("./student_manager");
+const { addStudent, deleteStudent, updateStudent, searchStudent, searchStudentByDepartment, searchStudentByDepartmentAndName } = require("./student_manager");
 const { addDepartment, renameDepartment, addStatus, renameStatus, addProgram, renameProgram } = require("./data_manage");
 
 function main() {
@@ -8,14 +8,16 @@ function main() {
         console.log("1. Thêm sinh viên");
         console.log("2. Xóa sinh viên");
         console.log("3. Cập nhật thông tin sinh viên");
-        console.log("4. Tìm kiếm sinh viên");
+        console.log("4. Tìm kiếm sinh viên (theo tên hoặc MSSV)");
         console.log("5. Thêm khoa mới");
         console.log("6. Đổi tên khoa");
         console.log("7. Thêm trạng thái mới");
         console.log("8. Đổi tên trạng thái");
         console.log("9. Thêm chương trình mới");
         console.log("10. Đổi tên chương trình");
-        console.log("11. Thoát");
+        console.log("11. Tìm kiếm sinh viên (theo khoa)");
+        console.log("12. Tìm kiếm sinh viên (theo khoa và tên)");
+        console.log("13. Thoát");
 
         const choice = prompt("Chọn chức năng: ").trim();
 
@@ -40,6 +42,10 @@ function main() {
         } else if (choice === "10") {
             renameProgram();
         } else if (choice === "11") {
+            searchStudentByDepartment();
+        } else if (choice === "12") {
+            searchStudentByDepartmentAndName();
+        } else if (choice === "13") {
             console.log("Thoát chương trình!");
             break;
         } else {

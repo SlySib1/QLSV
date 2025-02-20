@@ -121,9 +121,8 @@ function updateStudent() {
 }
 
 function searchStudent() {
-    const students = loadStudents();
-    const keyword = prompt("Nhập MSSV hoặc tên sinh viên: ").trim().toLowerCase();
-    const results = students.filter(s => s.MSSV.toLowerCase().includes(keyword) || s.Name.toLowerCase().includes(keyword));
+    const students = loadStudents();const keyword = prompt("Nhập MSSV hoặc tên sinh viên: ").trim();
+    const results = students.filter(s => s.MSSV === keyword || s.Name === keyword);
 
     if (results.length > 0) {
         console.log("Kết quả tìm kiếm:");
@@ -133,4 +132,31 @@ function searchStudent() {
     }
 }
 
-module.exports = { addStudent, deleteStudent, updateStudent, searchStudent };
+function searchStudentByDepartment() {
+    const students = loadStudents();
+    const keyword = prompt("Nhập khoa cần tìm: ").trim();
+    const results = students.filter(s => s.Department === keyword);
+
+    if (results.length > 0) {
+        console.log("Kết quả tìm kiếm:");
+        console.log(JSON.stringify(results, null, 4));
+    } else {
+        console.log("Không tìm thấy sinh viên!");
+    }
+}
+
+function searchStudentByDepartmentAndName() {
+    const students = loadStudents();
+    const department = prompt("Nhập Khoa cần tìm: ").trim();
+    const name = prompt("Nhập tên sinh viên: ").trim();
+    const results = students.filter(s => s.Department === department || s.Name === name);
+
+    if (results.length > 0) {
+        console.log("Kết quả tìm kiếm:");
+        console.log(JSON.stringify(results, null, 4));
+    } else {
+        console.log("Không tìm thấy sinh viên!");
+    }
+}
+
+module.exports = { addStudent, deleteStudent, updateStudent, searchStudent, searchStudentByDepartment, searchStudentByDepartmentAndName };

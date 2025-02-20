@@ -1,9 +1,22 @@
 [
     {
         "MSSV": "22127308",
-        "Name": "Lê Minh Nh���t",
+        "Name": "Lê Minh Nhật",
         "Dob": "07/10/2004",
         "Gender": "Nam",
+        "Email": "lmnhat22@clc.fitus.edu.vn",
+        "Phone": "0912930991",
+        "Department": "Khoa Luật",
+        "Corse": "2022",
+        "Program": "clc",
+        "Address": "12345679",
+        "Status": "Đang học"
+    },
+    {
+        "MSSV": "22127309",
+        "Name": "Lê Minh Minh Nhật",
+        "Dob": "07/10/2004",
+        "Gender": "Nữ",
         "Email": "lmnhat22@clc.fitus.edu.vn",
         "Phone": "0912930991",
         "Department": "Khoa Luật",
