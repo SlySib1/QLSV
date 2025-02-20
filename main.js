@@ -1,6 +1,6 @@
 const prompt = require("prompt-sync")();
 const { addStudent, deleteStudent, updateStudent, searchStudent } = require("./student_manager");
-const { addDepartment, renameDepartment, addStatus, renameStatus } = require("./data_manage");
+const { addDepartment, renameDepartment, addStatus, renameStatus, addProgram, renameProgram } = require("./data_manage");
 
 function main() {
     while (true) {
@@ -13,7 +13,9 @@ function main() {
         console.log("6. Đổi tên khoa");
         console.log("7. Thêm trạng thái mới");
         console.log("8. Đổi tên trạng thái");
-        console.log("9. Thoát");
+        console.log("9. Thêm chương trình mới");
+        console.log("10. Đổi tên chương trình");
+        console.log("11. Thoát");
 
         const choice = prompt("Chọn chức năng: ").trim();
 
@@ -34,6 +36,10 @@ function main() {
         } else if (choice === "8") {
             renameStatus();
         } else if (choice === "9") {
+            addProgram();
+        } else if (choice === "10") {
+            renameProgram();
+        } else if (choice === "11") {
             console.log("Thoát chương trình!");
             break;
         } else {

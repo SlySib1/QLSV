@@ -3,7 +3,8 @@ const path = require("path");
 
 const STUDENT_FILE = path.join(__dirname, "data", "students.json");
 const STATUS_FILE = path.join(__dirname, "data", "status.json");
-const DEPARTMENT_FILE = path.join(__dirname, "data", "DEPARTMENT.json");
+const DEPARTMENT_FILE = path.join(__dirname, "data", "department.json");
+const PROGRAM_FILE = path.join(__dirname, "data", "program.json");
 
 function loadStudents() {
     try {
@@ -32,6 +33,15 @@ function loadDepartment() {
     }
 }
 
+function loadProgram() {
+    try {
+        const data = fs.readFileSync(PROGRAM_FILE, "utf-8");
+        return JSON.parse(data);
+    } catch (error) {
+        return [];
+    }
+}
+
 function isValidEmail(email) {
     const pattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     return pattern.test(email);
@@ -51,4 +61,4 @@ function isValidStudentStatus(status) {
     return validStatuses.some(s => s.status === status);
 }
 
-module.exports = { loadStudents, loadStatus, loadDepartment, isValidEmail, isValidPhone, isValidDepartment, isValidStudentStatus };
+module.exports = { loadStudents, loadStatus, loadDepartment, loadProgram, isValidEmail, isValidPhone, isValidDepartment, isValidStudentStatus };

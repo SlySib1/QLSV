@@ -1,10 +1,11 @@
 const fs = require("fs");
 const prompt = require("prompt-sync")();
-const { loadDepartment, loadStatus } = require("./utils");
+const { loadDepartment, loadStatus, loadProgram } = require("./utils");
 const path = require("path");
 
 const DEPARTMENT_FILE = path.join(__dirname, "data", "department.json");
 const STATUS_FILE = path.join(__dirname, "data", "status.json");
+const PROGRAM_FILE = path.join(__dirname, "data", "program.json");
 
 function saveDepartments(departments) {
     fs.writeFileSync(DEPARTMENT_FILE, JSON.stringify(departments, null, 4), "utf-8");
@@ -12,6 +13,10 @@ function saveDepartments(departments) {
 
 function saveStatuses(statuses) {
     fs.writeFileSync(STATUS_FILE, JSON.stringify(statuses, null, 4), "utf-8");
+}
+
+function savePrograms(programs) {
+    fs.writeFileSync(PROGRAM_FILE, JSON.stringify(programs, null, 4), "utf-8");
 }
 
 function addDepartment() {
@@ -55,10 +60,10 @@ function addStatus() {
 
 function renameStatus() {
     const statuses = loadStatus();
-    const laststatus = prompt("Nhập trạng thái cũ: ").trim();
+    const lastStatus = prompt("Nhập trạng thái cũ: ").trim();
 
     for (let s of statuses) {
-        if (s.Status === laststatus) {
+        if (s.Status === lastStatus) {
             s.Status = prompt("Nhập trạng thái mới: ").trim();
             saveStatuses(statuses);
             console.log("Cập nhật thành công!");
@@ -68,4 +73,31 @@ function renameStatus() {
     console.log("Không tìm thấy trạng thái!");
 }
 
-module.exports = { addDepartment, renameDepartment, addStatus, renameStatus };
+function addProgram() {
+    const programs = loadProgram();
+    const program = prompt("Nhập trạng thái mới: ").trim();
+    const newProgram = {
+        Program: program
+    };
+
+    programs.push(newProgram);
+    savePrograms(programs);
+    console.log("Đã thêm trạng thái thành công!");
+}
+
+function renameProgram() {
+    const programs = loadProgram();
+    const lastProgram = prompt("Nhập trạng thái cũ: ").trim();
+
+    for (let s of programs) {
+        if (s.Program === lastProgram) {
+            s.Program = prompt("Nhập trạng thái mới: ").trim();
+            savePrograms(programs);
+            console.log("Cập nhật thành công!");
+            return;
+        }
+    }
+    console.log("Không tìm thấy trạng thái!");
+}
+
+module.exports = { addDepartment, renameDepartment, addStatus, renameStatus, addProgram, renameProgram };
