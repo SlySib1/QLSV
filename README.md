@@ -44,7 +44,7 @@ npm install
 
 ### 2. Chạy Chương Trình
 ```sh
-node student_manager.js
+node main.js
 ```
 
 ## Kiểm Tra Định Dạng Dữ Liệu
@@ -54,7 +54,7 @@ Dữ liệu nhập vào sẽ được kiểm tra tính hợp lệ:
 - Khoa và tình trạng sinh viên phải thuộc danh sách hợp lệ.
 
 ## Lưu Ý
-- Đảm bảo file `students.json` tồn tại trước khi chạy chương trình. Nếu không, hệ thống sẽ tự tạo file mới.
+- Đảm bảo file `main.json` tồn tại trước khi chạy chương trình. Nếu không, hệ thống sẽ tự tạo file mới.
 - Khi nhập dữ liệu, hãy nhập đúng định dạng để tránh lỗi.
 
 ## Đóng Góp
@@ -63,3 +63,39 @@ Nếu bạn muốn đóng góp cải tiến hoặc sửa lỗi, vui lòng tạo 
 ## License
 Dự án này được phát hành dưới giấy phép MIT.
 
+# VERSION 2.0
+## tính năng mới
+
+- **Show version và ngày build**: Hiển thị thông tin lần cuối build và version hiện tại theo tự động cập nhật với tag của git.
+  
+![Show version và ngày build](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Show%20version%20v%C3%A0%20ng%C3%A0y%20build.png)
+
+- **Thêm khoa và đổi tên khoa**: Nhập thông tin cho khoa mới hoặc đổi tên khoa cũ
+  
+![Thêm khoa](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Th%C3%AAm%20khoa.png)
+![Đổi tên khoa](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Th%C3%AAm%20khoa.png)
+
+- **Thêm khoa và đổi tên khoa**: Nhập thông tin cho khoa mới hoặc đổi tên khoa cũ
+  
+![Thêm khoa](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Th%C3%AAm%20khoa.png)
+![Đổi tên khoa](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Th%C3%AAm%20khoa.png)
+
+- **Thêm khoa và đổi tên khoa**: Nhập thông tin cho khoa mới hoặc đổi tên khoa cũ
+  
+![Thêm khoa](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Th%C3%AAm%20khoa.png)
+![Đổi tên khoa](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Th%C3%AAm%20khoa.png)
+
+- **Tìm kiếm theo khoa**: Tìm kiếm các sinh viên ở trong khoa.
+  
+![Thêm sinh viên](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Nh%E1%BA%ADp%20th%C3%B4ng%20tin%20sinh%20vi%C3%AAn.png)
+
+- **Tìm kiếm theo khoa và tên**: Tìm kiếm các sinh viên ở trong khoa và có tên được nhập.
+  
+![Thêm sinh viên](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Nh%E1%BA%ADp%20th%C3%B4ng%20tin%20sinh%20vi%C3%AAn.png)
+
+- **Hiển thị log**: Hiển thị thông tin log.
+  
+![Thêm sinh viên](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Nh%E1%BA%ADp%20th%C3%B4ng%20tin%20sinh%20vi%C3%AAn.png)
+
+## tính năng chưa làm được
+- **Hỗ trợ import/export dữ liệu**:CSV, JSON, XML, Excel** (**chọn ít nhất 2**)
