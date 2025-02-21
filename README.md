@@ -66,6 +66,11 @@ Dự án này được phát hành dưới giấy phép MIT.
 # VERSION 2.0
 ## tính năng mới
 
+- **Lưu data sinh viên**: Lưu thông tin sinh viên với JSON.
+  
+![Lưu data sinh viên](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/data%20sinh%20vi%C3%AAn.png)
+![Cấu trúc file data bao gồm sinh viên và các data khác](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/file%20data.png)
+
 - **Show version và ngày build**: Hiển thị thông tin lần cuối build và version hiện tại theo tự động cập nhật với tag của git.
   
 ![Show version và ngày build](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Show%20version%20v%C3%A0%20ng%C3%A0y%20build.png)
@@ -73,29 +78,29 @@ Dự án này được phát hành dưới giấy phép MIT.
 - **Thêm khoa và đổi tên khoa**: Nhập thông tin cho khoa mới hoặc đổi tên khoa cũ
   
 ![Thêm khoa](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Th%C3%AAm%20khoa.png)
-![Đổi tên khoa](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Th%C3%AAm%20khoa.png)
+![Đổi tên khoa](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/%C4%91%E1%BB%95i%20t%C3%AAn%20khoa.png)
 
-- **Thêm khoa và đổi tên khoa**: Nhập thông tin cho khoa mới hoặc đổi tên khoa cũ
+- **Thêm trạng thái và đổi tên trạng thái**: Nhập thông tin cho trạng thái mới hoặc đổi tên trạng thái cũ
   
-![Thêm khoa](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Th%C3%AAm%20khoa.png)
-![Đổi tên khoa](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Th%C3%AAm%20khoa.png)
+![Thêm trạng thái](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Th%C3%AAm%20tr%E1%BA%A1ng%20th%C3%A1i.png)
+![Đổi tên trạng thái](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/%C4%90%E1%BB%95i%20t%C3%AAn%20tr%E1%BA%A1ng%20th%C3%A1i.png)
 
-- **Thêm khoa và đổi tên khoa**: Nhập thông tin cho khoa mới hoặc đổi tên khoa cũ
+- **Thêm chương trình và đổi tên chương trình**: Nhập thông tin cho chương trình mới hoặc đổi tên chương trình cũ
   
-![Thêm khoa](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Th%C3%AAm%20khoa.png)
-![Đổi tên khoa](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Th%C3%AAm%20khoa.png)
+![Thêm chương trình](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/th%C3%AAm%20ch%C6%B0%C6%A1ng%20tr%C3%ACnh%20m%E1%BB%9Bi.png)
+![Đổi tên chương trình](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/%C4%91%E1%BB%95i%20t%C3%AAn%20ch%C6%B0%C6%A1ng%20tr%C3%ACnh.png)
 
 - **Tìm kiếm theo khoa**: Tìm kiếm các sinh viên ở trong khoa.
   
-![Thêm sinh viên](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Nh%E1%BA%ADp%20th%C3%B4ng%20tin%20sinh%20vi%C3%AAn.png)
+![Tìm kiếm theo khoa](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/t%C3%ACm%20ki%E1%BA%BFm%20sinh%20vi%C3%AAn%20theo%20khoa.png)
 
 - **Tìm kiếm theo khoa và tên**: Tìm kiếm các sinh viên ở trong khoa và có tên được nhập.
   
-![Thêm sinh viên](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Nh%E1%BA%ADp%20th%C3%B4ng%20tin%20sinh%20vi%C3%AAn.png)
+![Tìm kiếm theo khoa và tên](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/t%C3%ACm%20ki%E1%BA%BFm%20sinh%20vi%C3%AAn%20theo%20khoa%20v%C3%A0%20t%C3%AAn.png)
 
 - **Hiển thị log**: Hiển thị thông tin log.
   
-![Thêm sinh viên](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/Nh%E1%BA%ADp%20th%C3%B4ng%20tin%20sinh%20vi%C3%AAn.png)
+![Hiển thị log](https://github.com/LeMinhNhat22CLC02/QLSV/blob/main/screenshots/app%20log.png)
 
 ## tính năng chưa làm được
-- **Hỗ trợ import/export dữ liệu**:CSV, JSON, XML, Excel** (**chọn ít nhất 2**)
+- **Hỗ trợ import/export dữ liệu**:CSV, JSON, XML, Excel (**chọn ít nhất 2**)
