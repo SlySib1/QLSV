@@ -122,7 +122,8 @@ function updateStudent() {
 
 function searchStudent() {
     const students = loadStudents();const keyword = prompt("Nhập MSSV hoặc tên sinh viên: ").trim();
-    const results = students.filter(s => s.MSSV === keyword || s.Name === keyword);
+    const results = students.filter(s => s.MSSV.toLowerCase().includes(keyword)
+     || s.Name.toLowerCase().includes(keyword));
 
     if (results.length > 0) {
         console.log("Kết quả tìm kiếm:");
@@ -135,7 +136,7 @@ function searchStudent() {
 function searchStudentByDepartment() {
     const students = loadStudents();
     const keyword = prompt("Nhập khoa cần tìm: ").trim();
-    const results = students.filter(s => s.Department === keyword);
+    const results = students.filter(s => s.Department.toLowerCase().includes(keyword));
 
     if (results.length > 0) {
         console.log("Kết quả tìm kiếm:");
@@ -149,7 +150,8 @@ function searchStudentByDepartmentAndName() {
     const students = loadStudents();
     const department = prompt("Nhập Khoa cần tìm: ").trim();
     const name = prompt("Nhập tên sinh viên: ").trim();
-    const results = students.filter(s => s.Department === department || s.Name === name);
+    const results = students.filter(s => s.Department.toLowerCase().includes(department) 
+    || s.Name.toLowerCase().includes(name));
 
     if (results.length > 0) {
         console.log("Kết quả tìm kiếm:");

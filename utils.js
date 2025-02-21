@@ -53,12 +53,12 @@ function isValidPhone(phone) {
 
 function isValidDepartment(department) {
     const validDepartments = loadDepartment();
-    return validDepartments.some(s => s.department === department);
+    return validDepartments.some(s => s.Department === department);
 }
 
 function isValidStudentStatus(status) {
     const validStatuses = loadStatus();
-    return validStatuses.some(s => s.status === status);
+    return validStatuses.some(s => s.Status === status);
 }
 
 module.exports = { loadStudents, loadStatus, loadDepartment, loadProgram, isValidEmail, isValidPhone, isValidDepartment, isValidStudentStatus };
