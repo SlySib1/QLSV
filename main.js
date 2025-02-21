@@ -1,7 +1,39 @@
 const prompt = require("prompt-sync")();
 const winston = require("winston");
+const fs = require("fs");
+const { execSync } = require("child_process");
 const { addStudent, deleteStudent, updateStudent, searchStudent, searchStudentByDepartment, searchStudentByDepartmentAndName } = require("./student_manager");
 const { addDepartment, renameDepartment, addStatus, renameStatus, addProgram, renameProgram } = require("./data_manage");
+
+function getGitVersion() {
+    try {
+        return execSync("git describe --tags --abbrev=0").toString().trim();
+    } catch (error) {
+        console.warn("⚠ Không tìm thấy Git tag, dùng phiên bản mặc định.");
+        return "Unknown";
+    }
+}
+
+function generateBuildInfo() {
+    const buildInfoPath = "./build-info.json";
+    let version = getGitVersion();
+    let buildDate = new Date().toISOString();
+
+    if (fs.existsSync(buildInfoPath)) {
+        try {
+            const buildInfo = JSON.parse(fs.readFileSync(buildInfoPath, "utf-8"));
+            version = buildInfo.version || version;
+            buildDate = buildInfo.buildDate || buildDate;
+        } catch (error) {
+            console.warn("⚠ Không thể đọc build-info.json, tạo mới...");
+        }
+    }
+
+    fs.writeFileSync(buildInfoPath, JSON.stringify({ version, buildDate }, null, 2));
+    return { version, buildDate };
+}
+
+const { version: APP_VERSION, buildDate: BUILD_DATE } = generateBuildInfo();
 
 const logger = winston.createLogger({
     level: "info",
@@ -18,6 +50,9 @@ const logger = winston.createLogger({
 });
 
 function main() {
+    console.log(`\n📌 Ứng dụng Quản lý Sinh Viên`);
+    console.log(`🆙 Version: ${APP_VERSION} | 📅 Build Date: ${BUILD_DATE}`);
+
     while (true) {
         console.log("\n===== QUẢN LÝ SINH VIÊN =====");
         console.log("1. Thêm sinh viên");
