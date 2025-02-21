@@ -75,23 +75,23 @@ function renameStatus() {
 
 function addProgram() {
     const programs = loadProgram();
-    const program = prompt("Nhập trạng thái mới: ").trim();
+    const program = prompt("Nhập tên chương trình mới: ").trim();
     const newProgram = {
         Program: program
     };
 
     programs.push(newProgram);
     savePrograms(programs);
-    console.log("Đã thêm trạng thái thành công!");
+    console.log("Đã thêm chương trình mới thành công!");
 }
 
 function renameProgram() {
     const programs = loadProgram();
-    const lastProgram = prompt("Nhập trạng thái cũ: ").trim();
+    const lastProgram = prompt("Nhập tên chương trình cũ: ").trim();
 
     for (let s of programs) {
         if (s.Program === lastProgram) {
-            s.Program = prompt("Nhập trạng thái mới: ").trim();
+            s.Program = prompt("Nhập tên chương trình mới: ").trim();
             savePrograms(programs);
             console.log("Cập nhật thành công!");
             return;

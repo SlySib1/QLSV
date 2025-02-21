@@ -30,3 +30,29 @@
 [2025-02-21T13:50:37.680Z] INFO: Người dùng thoát chương trình
 [2025-02-21T13:51:22.163Z] INFO: Người dùng chọn chức năng: 13
 [2025-02-21T13:51:22.166Z] INFO: Người dùng thoát chương trình
+[2025-02-21T14:12:10.322Z] INFO: Người dùng chọn chức năng: 9
+[2025-02-21T14:12:10.325Z] INFO: Thêm chương trình mới
+[2025-02-21T14:12:32.206Z] INFO: Người dùng chọn chức năng: 
+[2025-02-21T14:12:32.207Z] WARN: Người dùng nhập lựa chọn không hợp lệ
+[2025-02-21T14:12:37.221Z] INFO: Người dùng chọn chức năng: 10
+[2025-02-21T14:12:37.222Z] INFO: Đổi tên chương trình
+[2025-02-21T14:13:24.341Z] INFO: Người dùng chọn chức năng: 11
+[2025-02-21T14:13:24.342Z] INFO: Tìm kiếm sinh viên theo khoa
+[2025-02-21T14:13:44.831Z] INFO: Người dùng chọn chức năng: 11
+[2025-02-21T14:13:44.833Z] INFO: Tìm kiếm sinh viên theo khoa
+[2025-02-21T14:14:03.046Z] INFO: Người dùng chọn chức năng: 11
+[2025-02-21T14:14:03.046Z] INFO: Tìm kiếm sinh viên theo khoa
+[2025-02-21T14:14:29.270Z] INFO: Người dùng chọn chức năng: 7
+[2025-02-21T14:14:29.271Z] INFO: Thêm trạng thái mới
+[2025-02-21T14:14:32.640Z] INFO: Người dùng chọn chức năng: 7
+[2025-02-21T14:14:32.640Z] INFO: Thêm trạng thái mới
+[2025-02-21T14:14:47.557Z] INFO: Người dùng chọn chức năng: 8
+[2025-02-21T14:14:47.558Z] INFO: Đổi tên trạng thái
+[2025-02-21T14:16:34.219Z] INFO: Người dùng chọn chức năng: 13
+[2025-02-21T14:16:34.220Z] INFO: Người dùng thoát chương trình
+[2025-02-21T14:17:08.071Z] INFO: Người dùng chọn chức năng: 11
+[2025-02-21T14:17:08.074Z] INFO: Tìm kiếm sinh viên theo khoa
+[2025-02-21T14:17:39.853Z] INFO: Người dùng chọn chức năng: 12
+[2025-02-21T14:17:39.854Z] INFO: Tìm kiếm sinh viên theo khoa và tên
+[2025-02-21T14:17:44.567Z] INFO: Người dùng chọn chức năng: 13
+[2025-02-21T14:17:44.568Z] INFO: Người dùng thoát chương trình
