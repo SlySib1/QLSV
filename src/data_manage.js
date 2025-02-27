@@ -18,6 +18,12 @@ function addDepartment() {
         return;
     }
 
+    const isDuplicate = departments.some(d => d.Department.toLowerCase() === department.toLowerCase());
+    if (isDuplicate) {
+        console.log("🚨 Khoa đã tồn tại, không thể thêm!");
+        return;
+    }
+
     const newDepartment = { Department: department };
     departments.push(newDepartment);
     saveDepartments(departments);

@@ -41,4 +41,14 @@ describe("Testing department functions", () => {
         addDepartment();
         expect(saveDepartments).not.toHaveBeenCalled();
     });
+    test("addDepartment() should call saveDepartments at most once", () => {
+        loadDepartment.mockReturnValue([]);
+        mockPrompt.mockReturnValue("IT Department");
+
+        addDepartment();
+        addDepartment();
+
+        expect(saveDepartments).toHaveBeenCalled(); // Đảm bảo đã được gọi
+        expect(saveDepartments).toHaveBeenCalledTimes(1); // Chỉ gọi đúng 1 lần
+    });
 });
