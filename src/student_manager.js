@@ -3,7 +3,7 @@ const prompt = require("prompt-sync")();
 const { loadStudents, isValidEmail, isValidPhone, isValidDepartment, isValidStudentStatus } = require("./utils");
 const path = require("path");
 
-const STUDENT_FILE = path.join(__dirname, "data", "students.json");
+const STUDENT_FILE = path.join(__dirname, "../data", "students.json");
 
 function saveStudents(students) {
     fs.writeFileSync(STUDENT_FILE, JSON.stringify(students, null, 4), "utf-8");
@@ -12,7 +12,7 @@ function saveStudents(students) {
 function addStudent() {
     const students = loadStudents();
     const mssv = prompt("Nhập MSSV: ").trim();
-    
+
     if (students.some(s => s.MSSV === mssv)) {
         console.log("MSSV đã tồn tại!");
         return;
@@ -61,7 +61,7 @@ function addStudent() {
         Adress: address,
         Status: status
     };
-    
+
     students.push(newStudent);
     saveStudents(students);
     console.log("Đã thêm sinh viên thành công!");
@@ -124,7 +124,7 @@ function searchStudent() {
     const students = loadStudents();
     const keyword = prompt("Nhập MSSV hoặc tên sinh viên: ").trim();
     const results = students.filter(s => s.MSSV.toLowerCase().includes(keyword)
-     || s.Name.toLowerCase().includes(keyword));
+        || s.Name.toLowerCase().includes(keyword));
 
     if (results.length > 0) {
         console.log("Kết quả tìm kiếm:");

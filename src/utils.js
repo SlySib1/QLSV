@@ -1,10 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 
-const STUDENT_FILE = path.join(__dirname, "data", "students.json");
-const STATUS_FILE = path.join(__dirname, "data", "status.json");
-const DEPARTMENT_FILE = path.join(__dirname, "data", "department.json");
-const PROGRAM_FILE = path.join(__dirname, "data", "program.json");
+const STUDENT_FILE = path.join(__dirname, "../data", "students.json");
+const STATUS_FILE = path.join(__dirname, "../data", "status.json");
+const DEPARTMENT_FILE = path.join(__dirname, "../data", "department.json");
+const PROGRAM_FILE = path.join(__dirname, "../data", "program.json");
 
 function loadStudents() {
     try {

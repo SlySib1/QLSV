@@ -3,9 +3,9 @@ const prompt = require("prompt-sync")();
 const { loadDepartment, loadStatus, loadProgram } = require("./utils");
 const path = require("path");
 
-const DEPARTMENT_FILE = path.join(__dirname, "data", "department.json");
-const STATUS_FILE = path.join(__dirname, "data", "status.json");
-const PROGRAM_FILE = path.join(__dirname, "data", "program.json");
+const DEPARTMENT_FILE = path.join(__dirname, "../data", "department.json");
+const STATUS_FILE = path.join(__dirname, "../data", "status.json");
+const PROGRAM_FILE = path.join(__dirname, "../data", "program.json");
 
 function saveDepartments(departments) {
     fs.writeFileSync(DEPARTMENT_FILE, JSON.stringify(departments, null, 4), "utf-8");
