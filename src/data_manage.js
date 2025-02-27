@@ -1,31 +1,24 @@
 const fs = require("fs");
 const prompt = require("prompt-sync")();
-const { loadDepartment, loadStatus, loadProgram } = require("./utils");
+const { loadDepartment, loadStatus, loadProgram,
+    saveDepartments, saveStatuses, savePrograms } = require("./utils");
 const path = require("path");
 
 const DEPARTMENT_FILE = path.join(__dirname, "../data", "department.json");
 const STATUS_FILE = path.join(__dirname, "../data", "status.json");
 const PROGRAM_FILE = path.join(__dirname, "../data", "program.json");
 
-function saveDepartments(departments) {
-    fs.writeFileSync(DEPARTMENT_FILE, JSON.stringify(departments, null, 4), "utf-8");
-}
-
-function saveStatuses(statuses) {
-    fs.writeFileSync(STATUS_FILE, JSON.stringify(statuses, null, 4), "utf-8");
-}
-
-function savePrograms(programs) {
-    fs.writeFileSync(PROGRAM_FILE, JSON.stringify(programs, null, 4), "utf-8");
-}
-
 function addDepartment() {
     const departments = loadDepartment();
-    const department = prompt("Nhập tên của khoa mới: ").trim();
-    const newDepartment = {
-        Department: department
-    };
 
+    const department = (prompt("Nhập tên của khoa mới: ") || "").trim();
+
+    if (!department) {
+        console.log("🚨 Không thêm department do tên trống");
+        return;
+    }
+
+    const newDepartment = { Department: department };
     departments.push(newDepartment);
     saveDepartments(departments);
     console.log("Đã thêm khoa thành công!");
@@ -100,4 +93,8 @@ function renameProgram() {
     console.log("Không tìm thấy trạng thái!");
 }
 
-module.exports = { addDepartment, renameDepartment, addStatus, renameStatus, addProgram, renameProgram };
+module.exports = {
+    addDepartment, renameDepartment,
+    addStatus, renameStatus,
+    addProgram, renameProgram
+};

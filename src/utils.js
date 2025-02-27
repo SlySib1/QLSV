@@ -42,6 +42,22 @@ function loadProgram() {
     }
 }
 
+function saveDepartments(departments) {
+    fs.writeFileSync(DEPARTMENT_FILE, JSON.stringify(departments, null, 4), "utf-8");
+}
+
+function saveStatuses(statuses) {
+    fs.writeFileSync(STATUS_FILE, JSON.stringify(statuses, null, 4), "utf-8");
+}
+
+function savePrograms(programs) {
+    fs.writeFileSync(PROGRAM_FILE, JSON.stringify(programs, null, 4), "utf-8");
+}
+
+function saveStudents(students) {
+    fs.writeFileSync(STUDENT_FILE, JSON.stringify(students, null, 4), "utf-8");
+}
+
 function isValidEmail(email) {
     const pattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     return pattern.test(email);
@@ -61,4 +77,8 @@ function isValidStudentStatus(status) {
     return validStatuses.some(s => s.Status === status);
 }
 
-module.exports = { loadStudents, loadStatus, loadDepartment, loadProgram, isValidEmail, isValidPhone, isValidDepartment, isValidStudentStatus };
+module.exports = {
+    loadStudents, loadStatus, loadDepartment, loadProgram,
+    saveDepartments, saveStatuses, savePrograms, saveStudents,
+    isValidEmail, isValidPhone, isValidDepartment, isValidStudentStatus
+};

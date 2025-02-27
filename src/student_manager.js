@@ -1,13 +1,10 @@
 const fs = require("fs");
 const prompt = require("prompt-sync")();
-const { loadStudents, isValidEmail, isValidPhone, isValidDepartment, isValidStudentStatus } = require("./utils");
+const { loadStudents, saveStudents, isValidEmail, isValidPhone,
+    isValidDepartment, isValidStudentStatus } = require("./utils");
 const path = require("path");
 
 const STUDENT_FILE = path.join(__dirname, "../data", "students.json");
-
-function saveStudents(students) {
-    fs.writeFileSync(STUDENT_FILE, JSON.stringify(students, null, 4), "utf-8");
-}
 
 function addStudent() {
     const students = loadStudents();
@@ -161,4 +158,7 @@ function searchStudentByDepartmentAndName() {
     }
 }
 
-module.exports = { addStudent, deleteStudent, updateStudent, searchStudent, searchStudentByDepartment, searchStudentByDepartmentAndName };
+module.exports = {
+    addStudent, deleteStudent, updateStudent, searchStudent,
+    searchStudentByDepartment, searchStudentByDepartmentAndName
+};
