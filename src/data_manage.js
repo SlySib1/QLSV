@@ -32,11 +32,15 @@ function addDepartment() {
 
 function renameDepartment() {
     const departments = loadDepartment();
-    const lastDepartment = prompt("Nhập tên cũ của khoa: ").trim();
+    const lastDepartment = (prompt("Nhập tên cũ của khoa: ") || "").trim();
 
     for (let s of departments) {
         if (s.Department === lastDepartment) {
-            s.Department = prompt("Nhập tên mới của khoa: ").trim();
+            s.Department = (prompt("Nhập tên mới của khoa: ") || "").trim();
+            if (!s.Department) {
+                console.log("🚨 Không thêm department do tên trống");
+                return;
+            }
             saveDepartments(departments);
             console.log("Cập nhật thành công!");
             return;
