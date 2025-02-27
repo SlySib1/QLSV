@@ -14,7 +14,7 @@ function addDepartment() {
     const department = (prompt("Nhập tên của khoa mới: ") || "").trim();
 
     if (!department) {
-        console.log("🚨 Không thêm department do tên trống");
+        console.log("🚨 Không thêm khoa do tên trống");
         return;
     }
 
@@ -38,7 +38,7 @@ function renameDepartment() {
         if (s.Department === lastDepartment) {
             s.Department = (prompt("Nhập tên mới của khoa: ") || "").trim();
             if (!s.Department) {
-                console.log("🚨 Không thêm department do tên trống");
+                console.log("🚨 Không đổi tên khoa do tên trống");
                 return;
             }
             saveDepartments(departments);
@@ -78,7 +78,19 @@ function renameStatus() {
 
 function addProgram() {
     const programs = loadProgram();
-    const program = prompt("Nhập tên chương trình mới: ").trim();
+    const program = (prompt("Nhập tên chương trình mới: ") || "").trim();
+
+    if (!program) {
+        console.log("🚨 Không thêm chương trình do tên trống");
+        return;
+    }
+
+    const isDuplicate = programs.some(d => d.Program.toLowerCase() === program.toLowerCase());
+    if (isDuplicate) {
+        console.log("🚨 Chương trình đã tồn tại, không thể thêm!");
+        return;
+    }
+
     const newProgram = {
         Program: program
     };
@@ -94,7 +106,11 @@ function renameProgram() {
 
     for (let s of programs) {
         if (s.Program === lastProgram) {
-            s.Program = prompt("Nhập tên chương trình mới: ").trim();
+            s.Program = (prompt("Nhập tên chương trình mới: ") || "").trim();
+            if (!s.Program) {
+                console.log("🚨 Không đổi tên chương trình do tên trống");
+                return;
+            }
             savePrograms(programs);
             console.log("Cập nhật thành công!");
             return;

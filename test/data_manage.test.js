@@ -1,8 +1,12 @@
 const fs = require("fs");
 const { addDepartment, renameDepartment,
     addStatus, renameStatus,
-    addProgram, renameProgram } = require("../src/data_manage");
-const { loadDepartment, saveDepartments } = require("../src/utils");
+    addProgram, renameProgram,
+} = require("../src/data_manage");
+const { loadDepartment, saveDepartments,
+    loadProgram, savePrograms,
+    loadStatus, saveStatuses
+} = require("../src/utils");
 
 jest.mock("fs");
 
@@ -17,6 +21,8 @@ const mockPrompt = prompt;
 jest.mock("../src/utils", () => ({
     loadDepartment: jest.fn(),
     saveDepartments: jest.fn(),
+    loadProgram: jest.fn(),
+    savePrograms: jest.fn(),
 }));
 
 describe("Testing department functions", () => {
@@ -97,5 +103,87 @@ describe("Testing renameDepartment function", () => {
         expect(loadDepartment).toHaveBeenCalled();
         expect(mockPrompt).toHaveBeenCalledTimes(2);
         expect(saveDepartments).not.toHaveBeenCalled();
+    });
+});
+
+describe("Testing addProgram function", () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
+    test("addProgram() should add a new program and save to file", () => {
+        mockPrompt.mockReturnValue("New Program");
+        loadProgram.mockReturnValue([]);
+
+        addProgram();
+
+        expect(loadProgram).toHaveBeenCalled();
+        expect(mockPrompt).toHaveBeenCalledWith("Nhập tên chương trình mới: ");
+        expect(savePrograms).toHaveBeenCalledWith([{ Program: "New Program" }]);
+    });
+
+    test("addProgram() should not add an empty program", () => {
+        mockPrompt.mockReturnValue("");
+        loadProgram.mockReturnValue([]);
+
+        addProgram();
+
+        expect(loadProgram).toHaveBeenCalled();
+        expect(savePrograms).not.toHaveBeenCalled();
+    });
+
+    test("addProgram() should not add a duplicate program", () => {
+        mockPrompt.mockReturnValue("Existing Program");
+        loadProgram.mockReturnValue([{ Program: "Existing Program" }]);
+
+        addProgram();
+
+        expect(loadProgram).toHaveBeenCalled();
+        expect(savePrograms).not.toHaveBeenCalled();
+    });
+});
+
+describe("Testing renameProgram function", () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
+    test("renameProgram() should rename an existing program and save", () => {
+        mockPrompt.mockReturnValueOnce("Old Program").mockReturnValueOnce("New Program");
+
+        loadProgram.mockReturnValue([{ Program: "Old Program" }]);
+
+        renameProgram();
+
+        expect(loadProgram).toHaveBeenCalled();
+        expect(mockPrompt).toHaveBeenCalledTimes(2);
+        expect(mockPrompt).toHaveBeenCalledWith("Nhập tên chương trình cũ: ");
+        expect(mockPrompt).toHaveBeenCalledWith("Nhập tên chương trình mới: ");
+        expect(savePrograms).toHaveBeenCalledWith([{ Program: "New Program" }]);
+    });
+
+    test("renameProgram() should not rename if program does not exist", () => {
+        mockPrompt.mockReturnValue("Nonexistent Program");
+
+        loadProgram.mockReturnValue([{ Program: "Existing Program" }]);
+
+        renameProgram();
+
+        expect(loadProgram).toHaveBeenCalled();
+        expect(mockPrompt).toHaveBeenCalledTimes(1);
+        expect(mockPrompt).toHaveBeenCalledWith("Nhập tên chương trình cũ: ");
+        expect(savePrograms).not.toHaveBeenCalled();
+    });
+
+    test("renameProgram() should not rename if new name is empty", () => {
+        mockPrompt.mockReturnValueOnce("Old Program").mockReturnValueOnce("");
+
+        loadProgram.mockReturnValue([{ Program: "Old Program" }]);
+
+        renameProgram();
+
+        expect(loadProgram).toHaveBeenCalled();
+        expect(mockPrompt).toHaveBeenCalledTimes(2);
+        expect(savePrograms).not.toHaveBeenCalled();
     });
 });
