@@ -2,35 +2,38 @@ const prompt = require("prompt-sync")();
 const winston = require("winston");
 const fs = require("fs");
 const { execSync } = require("child_process");
-const { addStudent, deleteStudent, updateStudent, searchStudent, searchStudentByDepartment, searchStudentByDepartmentAndName } = require("./student_manager");
-const { addDepartment, renameDepartment, addStatus, renameStatus, addProgram, renameProgram } = require("./data_manage");
+const { addStudent, deleteStudent, updateStudent, searchStudent, searchStudentByDepartment, searchStudentByDepartmentAndName } = require("./src/student_manager");
+const { addDepartment, renameDepartment, addStatus, renameStatus, addProgram, renameProgram } = require("./src/data_manage");
 
 function getGitVersion() {
     try {
         return execSync("git describe --tags --abbrev=0").toString().trim();
     } catch (error) {
-        console.warn("⚠ Không tìm thấy Git tag, dùng phiên bản mặc định.");
-        return "Unknown";
+        console.warn("⚠ Không tìm thấy Git tag, thử lấy phiên bản theo cách khác...");
+        try {
+            return execSync("git tag --sort=-creatordate | head -n 1").toString().trim();
+        } catch (error2) {
+            console.warn("⚠ Không tìm thấy Git tag theo cách khác, thử lấy từ package.json...");
+            try {
+                const packageJson = JSON.parse(fs.readFileSync("./package.json", "utf-8"));
+                return packageJson.version || "Unknown";
+            } catch (error3) {
+                return "Unknown";
+            }
+        }
     }
 }
 
 function generateBuildInfo() {
     const buildInfoPath = "./build-info.json";
-    let version = getGitVersion();
-    let buildDate = new Date().toISOString();
+    const version = getGitVersion();
+    const buildDate = new Date().toISOString();
 
-    if (fs.existsSync(buildInfoPath)) {
-        try {
-            const buildInfo = JSON.parse(fs.readFileSync(buildInfoPath, "utf-8"));
-            version = buildInfo.version || version;
-            buildDate = buildInfo.buildDate || buildDate;
-        } catch (error) {
-            console.warn("⚠ Không thể đọc build-info.json, tạo mới...");
-        }
-    }
+    const newBuildInfo = { version, buildDate };
+    fs.writeFileSync(buildInfoPath, JSON.stringify(newBuildInfo, null, 2), { flag: 'w' });
 
-    fs.writeFileSync(buildInfoPath, JSON.stringify({ version, buildDate }, null, 2));
-    return { version, buildDate };
+    console.log(`✅ Cập nhật build-info.json:`, newBuildInfo);
+    return newBuildInfo;
 }
 
 const { version: APP_VERSION, buildDate: BUILD_DATE } = generateBuildInfo();
