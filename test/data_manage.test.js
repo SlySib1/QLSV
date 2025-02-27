@@ -23,6 +23,8 @@ jest.mock("../src/utils", () => ({
     saveDepartments: jest.fn(),
     loadProgram: jest.fn(),
     savePrograms: jest.fn(),
+    loadStatus: jest.fn(),
+    saveStatuses: jest.fn(),
 }));
 
 describe("Testing department functions", () => {
@@ -185,5 +187,87 @@ describe("Testing renameProgram function", () => {
         expect(loadProgram).toHaveBeenCalled();
         expect(mockPrompt).toHaveBeenCalledTimes(2);
         expect(savePrograms).not.toHaveBeenCalled();
+    });
+});
+
+describe("Testing addStatus function", () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
+    test("addStatus() should add a new status and save to file", () => {
+        mockPrompt.mockReturnValue("New Status");
+        loadStatus.mockReturnValue([]);
+
+        addStatus();
+
+        expect(loadStatus).toHaveBeenCalled();
+        expect(mockPrompt).toHaveBeenCalledWith("Nhập trạng thái mới: ");
+        expect(saveStatuses).toHaveBeenCalledWith([{ Status: "New Status" }]);
+    });
+
+    test("addStatus() should not add an empty status", () => {
+        mockPrompt.mockReturnValue("");
+        loadStatus.mockReturnValue([]);
+
+        addStatus();
+
+        expect(loadStatus).toHaveBeenCalled();
+        expect(saveStatuses).not.toHaveBeenCalled();
+    });
+
+    test("addStatus() should not add a duplicate status", () => {
+        mockPrompt.mockReturnValue("Existing Status");
+        loadStatus.mockReturnValue([{ Status: "Existing Status" }]);
+
+        addStatus();
+
+        expect(loadStatus).toHaveBeenCalled();
+        expect(saveStatuses).not.toHaveBeenCalled();
+    });
+});
+
+describe("Testing renameStatus function", () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
+    test("renameStatus() should rename an existing status and save", () => {
+        mockPrompt.mockReturnValueOnce("Old Status").mockReturnValueOnce("New Status");
+
+        loadStatus.mockReturnValue([{ Status: "Old Status" }]);
+
+        renameStatus();
+
+        expect(loadStatus).toHaveBeenCalled();
+        expect(mockPrompt).toHaveBeenCalledTimes(2);
+        expect(mockPrompt).toHaveBeenCalledWith("Nhập trạng thái cũ: ");
+        expect(mockPrompt).toHaveBeenCalledWith("Nhập trạng thái mới: ");
+        expect(saveStatuses).toHaveBeenCalledWith([{ Status: "New Status" }]);
+    });
+
+    test("renameStatus() should not rename if status does not exist", () => {
+        mockPrompt.mockReturnValue("Nonexistent Status");
+
+        loadStatus.mockReturnValue([{ Status: "Existing Status" }]);
+
+        renameStatus();
+
+        expect(loadStatus).toHaveBeenCalled();
+        expect(mockPrompt).toHaveBeenCalledTimes(1);
+        expect(mockPrompt).toHaveBeenCalledWith("Nhập trạng thái cũ: ");
+        expect(saveStatuses).not.toHaveBeenCalled();
+    });
+
+    test("renameStatus() should not rename if new name is empty", () => {
+        mockPrompt.mockReturnValueOnce("Old Status").mockReturnValueOnce("");
+
+        loadStatus.mockReturnValue([{ Status: "Old Status" }]);
+
+        renameStatus();
+
+        expect(loadStatus).toHaveBeenCalled();
+        expect(mockPrompt).toHaveBeenCalledTimes(2);
+        expect(saveStatuses).not.toHaveBeenCalled();
     });
 });

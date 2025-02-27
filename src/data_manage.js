@@ -51,7 +51,19 @@ function renameDepartment() {
 
 function addStatus() {
     const statuses = loadStatus();
-    const status = prompt("Nhập trạng thái mới: ").trim();
+    const status = (prompt("Nhập trạng thái mới: ") || "").trim();
+
+    if (!status) {
+        console.log("🚨 Không thêm trạng thái do tên trống");
+        return;
+    }
+
+    const isDuplicate = statuses.some(d => d.Status.toLowerCase() === status.toLowerCase());
+    if (isDuplicate) {
+        console.log("🚨 trạng thái đã tồn tại, không thể thêm!");
+        return;
+    }
+
     const newStatus = {
         Status: status
     };
@@ -67,7 +79,11 @@ function renameStatus() {
 
     for (let s of statuses) {
         if (s.Status === lastStatus) {
-            s.Status = prompt("Nhập trạng thái mới: ").trim();
+            s.Status = (prompt("Nhập trạng thái mới: ") || "").trim();
+            if (!s.Status) {
+                console.log("🚨 Không đổi tên trạng thái do tên trống");
+                return;
+            }
             saveStatuses(statuses);
             console.log("Cập nhật thành công!");
             return;
