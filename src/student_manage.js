@@ -121,7 +121,7 @@ function searchStudent() {
     const students = loadStudents();
     const keyword = prompt("Nhập MSSV hoặc tên sinh viên: ").trim();
     const results = students.filter(s => s.MSSV.toLowerCase().includes(keyword)
-        || s.Name.toLowerCase().includes(keyword));
+        || s.Name === keyword);
 
     if (results.length > 0) {
         console.log("Kết quả tìm kiếm:");

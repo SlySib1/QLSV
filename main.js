@@ -2,7 +2,7 @@ const prompt = require("prompt-sync")();
 const winston = require("winston");
 const fs = require("fs");
 const { execSync } = require("child_process");
-const { addStudent, deleteStudent, updateStudent, searchStudent, searchStudentByDepartment, searchStudentByDepartmentAndName } = require("./src/student_manager");
+const { addStudent, deleteStudent, updateStudent, searchStudent, searchStudentByDepartment, searchStudentByDepartmentAndName } = require("./src/student_manage");
 const { addDepartment, renameDepartment, addStatus, renameStatus, addProgram, renameProgram } = require("./src/data_manage");
 
 function getGitVersion() {
