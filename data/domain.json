@@ -1,0 +1,11 @@
+{
+    "allowedDomains": [
+        "example.com",
+        "company.org",
+        "mydomain.net",
+        "business.co",
+        "securemail.com",
+        "clc.fitus.edu.vn",
+        "gmail.com"
+    ]
+}

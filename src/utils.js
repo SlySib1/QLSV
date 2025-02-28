@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const validator = require("validator");
 
 const STUDENT_FILE = path.join(__dirname, "../data", "students.json");
 const STATUS_FILE = path.join(__dirname, "../data", "status.json");
@@ -58,9 +59,18 @@ function saveStudents(students) {
     fs.writeFileSync(STUDENT_FILE, JSON.stringify(students, null, 4), "utf-8");
 }
 
+function loadAllowedDomains() {
+    const rawData = fs.readFileSync("./data/domain.json");
+    const config = JSON.parse(rawData);
+    return config.allowedDomains;
+}
+
 function isValidEmail(email) {
-    const pattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-    return pattern.test(email);
+    const allowedDomains = loadAllowedDomains();
+    if (!validator.isEmail(email)) return false;
+
+    const domain = email.split("@")[1];
+    return allowedDomains.includes(domain);
 }
 
 function isValidPhone(phone) {
