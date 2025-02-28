@@ -40,7 +40,7 @@ function addStudent() {
     const program = prompt("Nhập chương trình: ").trim();
     const address = prompt("Nhập địa chỉ: ").trim();
     const status = prompt("Nhập tình trạng sinh viên: ").trim();
-    if (!isValidStudentStatus(status)) {
+    if (!isValidStudentStatus("", status)) {
         console.log("Tình trạng sinh viên không hợp lệ!");
         return;
     }
@@ -105,10 +105,12 @@ function updateStudent() {
             s.Program = prompt("Nhập chương trình mới: ").trim();
             s.Address = prompt("Nhập địa chỉ mới: ").trim();
             s.Status = prompt("Nhập tình trạng sinh viên mới: ").trim();
-            if (!isValidStudentStatus(s.Status)) {
+            const newStatus = prompt("Nhập tình trạng sinh viên mới: ").trim();
+            if (!isValidStudentStatus(s.Status, newStatus)) {
                 console.log("Tình trạng sinh viên không hợp lệ!");
                 return;
             }
+            s.Status = newStatus;
             saveStudents(students);
             console.log("Cập nhật thành công!");
             return;

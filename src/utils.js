@@ -93,9 +93,22 @@ function isValidDepartment(department) {
     return validDepartments.some(s => s.Department === department);
 }
 
-function isValidStudentStatus(status) {
+function isValidStudentStatus(currentStatus, newStatus) {
     const validStatuses = loadStatus();
-    return validStatuses.some(s => s.Status === status);
+    if (!validStatuses.some(s => s.Status === newStatus)) return false;
+    if (currentStatus === "Đang học") {
+        return newStatus === "Tạm dừng học" || newStatus === "Đã tốt nghiệp" || newStatus === "Đã thôi học";
+    }
+    if (currentStatus === "Tạm dừng học") {
+        return newStatus === "Đang học" || newStatus === "Đã thôi học";
+    }
+    if (currentStatus === "Đã tốt nghiệp") {
+        return false;
+    }
+    if (currentStatus === "Đã thôi học") {
+        return false;
+    }
+    return false;
 }
 
 module.exports = {
