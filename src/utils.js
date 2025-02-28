@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const validator = require("validator");
+const { parsePhoneNumberFromString } = require("libphonenumber-js");
 
 const STUDENT_FILE = path.join(__dirname, "../data", "students.json");
 const STATUS_FILE = path.join(__dirname, "../data", "status.json");
@@ -73,8 +74,18 @@ function isValidEmail(email) {
     return allowedDomains.includes(domain);
 }
 
+function loadAllowedCountries() {
+    const rawData = fs.readFileSync("./data/countries.json");
+    const config = JSON.parse(rawData);
+    return config.allowedCountries;
+}
+
 function isValidPhone(phone) {
-    return /^\d{10}$/.test(phone);
+    const allowedCountries = loadAllowedCountries();
+    return allowedCountries.some(countryCode => {
+        const phoneNumber = parsePhoneNumberFromString(phone, countryCode);
+        if (countryCode === phoneNumber.country) return true;
+    });
 }
 
 function isValidDepartment(department) {
