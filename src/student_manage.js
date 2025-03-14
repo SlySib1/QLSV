@@ -84,7 +84,7 @@ function updateStudent() {
 
     for (let s of students) {
         if (s.MSSV === mssv) {
-            const oldData = s;
+            const oldData = JSON.parse(JSON.stringify(s));
             console.log("Nếu muốn giữ nguyên thông tin hãy chỉ nhấn enter.");
             s.Name = prompt("Nhập họ tên mới: ").trim();
             if (!s.Name) {
@@ -142,6 +142,8 @@ function updateStudent() {
                     console.log("Tình trạng sinh viên không hợp lệ!");
                     return;
                 }
+            console.log(oldData);
+            console.log(s);
             saveStudents(students);
             sendEmailToStudent(s, oldData);
             console.log("Cập nhật thành công!");

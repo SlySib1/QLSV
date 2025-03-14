@@ -31,6 +31,8 @@ function sendEmailToStudent(student, oldData) {
     }
 
     if (changes.length > 0) {
+        console.log(changes.length);
+        console.log(changes);
         const message = `Thông tin của bạn đã được cập nhật:\n${changes.join("\n")}`;
         sendEmail(student.Email, "Cập nhật thông tin sinh viên", message);
     }
