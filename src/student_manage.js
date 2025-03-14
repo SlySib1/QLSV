@@ -8,6 +8,7 @@ const path = require("path");
 const DELETE_LIMIT_MINUTES = 30;
 
 function addStudent() {
+    console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
     const students = loadStudents();
     const mssv = prompt("Nhập MSSV: ").trim();
     const rule = loadRule();
@@ -72,6 +73,7 @@ function addStudent() {
 }
 
 function deleteStudent() {
+    console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
     const students = loadStudents();
     const mssv = prompt("Nhập MSSV cần xóa: ").trim();
     const updatedStudents = students.filter(s => s.MSSV !== mssv && ((Date.now() - s.createdAt) / (1000 * 60) < DELETE_LIMIT_MINUTES));
@@ -85,6 +87,7 @@ function deleteStudent() {
 }
 
 function updateStudent() {
+    console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
     const students = loadStudents();
     const mssv = prompt("Nhập MSSV cần cập nhật: ").trim();
     const rule = loadRule();
@@ -164,6 +167,7 @@ function updateStudent() {
 }
 
 function searchStudent() {
+    console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
     const students = loadStudents();
     const keyword = prompt("Nhập MSSV hoặc tên sinh viên: ").trim();
     const results = students.filter(s => s.MSSV.toLowerCase().includes(keyword)
@@ -178,6 +182,7 @@ function searchStudent() {
 }
 
 function searchStudentByDepartment() {
+    console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
     const students = loadStudents();
     const department = prompt("Nhập khoa cần tìm: ").trim();
     const results = students.filter(s => s.Department === department);
@@ -191,6 +196,7 @@ function searchStudentByDepartment() {
 }
 
 function searchStudentByDepartmentAndName() {
+    console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
     const students = loadStudents();
     const department = prompt("Nhập Khoa cần tìm: ").trim();
     const name = prompt("Nhập tên sinh viên: ").trim();

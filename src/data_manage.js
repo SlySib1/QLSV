@@ -5,6 +5,7 @@ const { loadDepartment, loadStatus, loadProgram, loadRule,
 const path = require("path");
 
 function addDepartment() {
+    console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
     const departments = loadDepartment();
     const department = (prompt("Nhập tên của khoa mới: ") || "").trim();
     const rule = loadRule();
@@ -28,6 +29,7 @@ function addDepartment() {
 }
 
 function renameDepartment() {
+    console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
     const departments = loadDepartment();
     const lastDepartment = (prompt("Nhập tên cũ của khoa: ") || "").trim();
     const rule = loadRule();
@@ -55,6 +57,7 @@ function renameDepartment() {
 }
 
 function addStatus() {
+    console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
     const statuses = loadStatus();
     const status = (prompt("Nhập trạng thái mới: ") || "").trim();
     const rule = loadRule();
@@ -81,6 +84,7 @@ function addStatus() {
 }
 
 function renameStatus() {
+    console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
     const statuses = loadStatus();
     const lastStatus = prompt("Nhập trạng thái cũ: ").trim();
     const rule = loadRule();
@@ -107,6 +111,7 @@ function renameStatus() {
 }
 
 function addProgram() {
+    console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
     const programs = loadProgram();
     const program = (prompt("Nhập tên chương trình mới: ") || "").trim();
     const rule = loadRule();
@@ -133,6 +138,7 @@ function addProgram() {
 }
 
 function renameProgram() {
+    console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
     const programs = loadProgram();
     const lastProgram = prompt("Nhập tên chương trình cũ: ").trim();
     const rule = loadRule();
@@ -159,6 +165,7 @@ function renameProgram() {
 }
 
 function changeRule() {
+    console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
     let rules = loadRule();
 
     if (rules.length === 0) {

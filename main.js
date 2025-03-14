@@ -59,6 +59,7 @@ function main() {
     console.log(`🆙 Version: ${APP_VERSION} | 📅 Build Date: ${BUILD_DATE}`);
 
     while (true) {
+        console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
         console.log("\n===== QUẢN LÝ SINH VIÊN =====");
         console.log("1. Thêm sinh viên");
         console.log("2. Xóa sinh viên");
