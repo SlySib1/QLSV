@@ -89,22 +89,18 @@ function updateStudent() {
             s.Name = prompt("Nhập họ tên mới: ").trim();
             if (!s.Name) {
                 s.Name = oldData.Name;
-                return;
             }
             s.Dob = prompt("Nhập ngày tháng năm sinh mới (DD/MM/YYYY): ").trim();
             if (!s.Dob) {
                 s.Dob = oldData.Dob;
-                return;
             }
             s.Gender = prompt("Nhập giới tính mới (Nam/Nữ): ").trim();
             if (!s.Gender) {
                 s.Gender = oldData.Gender;
-                return;
             }
             s.Email = prompt("Nhập email mới: ").trim();
             if (!s.Email) {
                 s.Email = oldData.Email;
-                return;
             } else
                 if (!isValidEmail(s.Email)) {
                     console.log("Email không hợp lệ!");
@@ -113,7 +109,6 @@ function updateStudent() {
             s.Phone = prompt("Nhập số điện thoại mới: ").trim();
             if (!s.Phone) {
                 s.Phone = oldData.Phone;
-                return;
             } else
                 if (!isValidPhone(s.Phone)) {
                     console.log("Số điện thoại không hợp lệ!");
@@ -122,7 +117,6 @@ function updateStudent() {
             s.Department = prompt("Nhập khoa mới: ").trim();
             if (!s.Department) {
                 s.Department = oldData.Department;
-                return;
             } else
                 if (!isValidDepartment(s.Department)) {
                     console.log("Tên khoa không hợp lệ!");
@@ -131,28 +125,23 @@ function updateStudent() {
             s.Corse = prompt("Nhập khóa mới: ").trim();
             if (!s.Corse) {
                 s.Corse = oldData.Corse;
-                return;
             }
             s.Program = prompt("Nhập chương trình mới: ").trim();
             if (!s.Program) {
                 s.Program = oldData.Program;
-                return;
             }
             s.Address = prompt("Nhập địa chỉ mới: ").trim();
             if (!s.Address) {
                 s.Address = oldData.Address;
-                return;
             }
             s.Status = prompt("Nhập tình trạng sinh viên mới: ").trim();
             if (!s.Status) {
                 s.Status = oldData.Status;
-                return;
             } else
                 if (!isValidStudentStatus(oldData.Status, s.Status)) {
                     console.log("Tình trạng sinh viên không hợp lệ!");
                     return;
                 }
-            s.Status = newStatus;
             saveStudents(students);
             sendEmailToStudent(s, oldData);
             console.log("Cập nhật thành công!");
