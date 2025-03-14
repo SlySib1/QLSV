@@ -3,7 +3,8 @@ const winston = require("winston");
 const fs = require("fs");
 const { execSync } = require("child_process");
 const { addStudent, deleteStudent, updateStudent, searchStudent, searchStudentByDepartment, searchStudentByDepartmentAndName } = require("./src/student_manage");
-const { addDepartment, renameDepartment, addStatus, renameStatus, addProgram, renameProgram } = require("./src/data_manage");
+const { addDepartment, renameDepartment, addStatus, renameStatus, addProgram, renameProgram, changeRule } = require("./src/data_manage");
+const { loadRule } = require("./src/utils");
 const { sendNotification } = require("./src/send_notification");
 
 function getGitVersion() {
@@ -71,7 +72,9 @@ function main() {
         console.log("10. Đổi tên chương trình");
         console.log("11. Tìm kiếm sinh viên (theo khoa)");
         console.log("12. Tìm kiếm sinh viên (theo khoa và tên)");
-        console.log("13. Thoát");
+        if (loadRule()) console.log("13. Tắt việc áp dụng quy định");
+        else consone.log("13. Bật việc áp dụng quy định");
+        console.log("14. Thoát");
 
         const choice = prompt("Chọn chức năng: ").trim();
         logger.info(`Người dùng chọn chức năng: ${choice}`);
@@ -113,6 +116,9 @@ function main() {
             logger.info("Tìm kiếm sinh viên theo khoa và tên");
             searchStudentByDepartmentAndName();
         } else if (choice === "13") {
+            logger.info("Thay đổi việc áp dụng quy định");
+            changeRule();
+        } else if (choice === "14") {
             logger.info("Người dùng thoát chương trình");
             console.log("Thoát chương trình!");
             break;

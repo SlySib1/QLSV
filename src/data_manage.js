@@ -1,17 +1,13 @@
 const fs = require("fs");
 const prompt = require("prompt-sync")();
-const { loadDepartment, loadStatus, loadProgram,
+const { loadDepartment, loadStatus, loadProgram, loadRule,
     saveDepartments, saveStatuses, savePrograms } = require("./utils");
 const path = require("path");
 
-const DEPARTMENT_FILE = path.join(__dirname, "../data", "department.json");
-const STATUS_FILE = path.join(__dirname, "../data", "status.json");
-const PROGRAM_FILE = path.join(__dirname, "../data", "program.json");
-
 function addDepartment() {
     const departments = loadDepartment();
-
     const department = (prompt("Nhập tên của khoa mới: ") || "").trim();
+    const rule = loadRule();
 
     if (!department) {
         console.log("🚨 Không thêm khoa do tên trống");
@@ -19,10 +15,11 @@ function addDepartment() {
     }
 
     const isDuplicate = departments.some(d => d.Department.toLowerCase() === department.toLowerCase());
-    if (isDuplicate) {
-        console.log("🚨 Khoa đã tồn tại, không thể thêm!");
-        return;
-    }
+    if (rule)
+        if (isDuplicate) {
+            console.log("🚨 Khoa đã tồn tại, không thể thêm!");
+            return;
+        }
 
     const newDepartment = { Department: department };
     departments.push(newDepartment);
@@ -33,6 +30,7 @@ function addDepartment() {
 function renameDepartment() {
     const departments = loadDepartment();
     const lastDepartment = (prompt("Nhập tên cũ của khoa: ") || "").trim();
+    const rule = loadRule();
 
     for (let s of departments) {
         if (s.Department === lastDepartment) {
@@ -41,6 +39,13 @@ function renameDepartment() {
                 console.log("🚨 Không đổi tên khoa do tên trống");
                 return;
             }
+
+            const isDuplicate = departments.some(d => d.Department.toLowerCase() === department.toLowerCase());
+            if (rule)
+                if (isDuplicate) {
+                    console.log("🚨 Khoa đã tồn tại, không thể đổi tên thành!");
+                    return;
+                }
             saveDepartments(departments);
             console.log("Cập nhật thành công!");
             return;
@@ -52,6 +57,7 @@ function renameDepartment() {
 function addStatus() {
     const statuses = loadStatus();
     const status = (prompt("Nhập trạng thái mới: ") || "").trim();
+    const rule = loadRule();
 
     if (!status) {
         console.log("🚨 Không thêm trạng thái do tên trống");
@@ -59,10 +65,11 @@ function addStatus() {
     }
 
     const isDuplicate = statuses.some(d => d.Status.toLowerCase() === status.toLowerCase());
-    if (isDuplicate) {
-        console.log("🚨 trạng thái đã tồn tại, không thể thêm!");
-        return;
-    }
+    if (rule)
+        if (isDuplicate) {
+            console.log("🚨 trạng thái đã tồn tại, không thể thêm!");
+            return;
+        }
 
     const newStatus = {
         Status: status
@@ -76,6 +83,7 @@ function addStatus() {
 function renameStatus() {
     const statuses = loadStatus();
     const lastStatus = prompt("Nhập trạng thái cũ: ").trim();
+    const rule = loadRule();
 
     for (let s of statuses) {
         if (s.Status === lastStatus) {
@@ -84,6 +92,12 @@ function renameStatus() {
                 console.log("🚨 Không đổi tên trạng thái do tên trống");
                 return;
             }
+            const isDuplicate = statuses.some(d => d.Status.toLowerCase() === status.toLowerCase());
+            if (rule)
+                if (isDuplicate) {
+                    console.log("🚨 trạng thái đã tồn tại, không thể thêm!");
+                    return;
+                }
             saveStatuses(statuses);
             console.log("Cập nhật thành công!");
             return;
@@ -95,6 +109,7 @@ function renameStatus() {
 function addProgram() {
     const programs = loadProgram();
     const program = (prompt("Nhập tên chương trình mới: ") || "").trim();
+    const rule = loadRule();
 
     if (!program) {
         console.log("🚨 Không thêm chương trình do tên trống");
@@ -102,10 +117,11 @@ function addProgram() {
     }
 
     const isDuplicate = programs.some(d => d.Program.toLowerCase() === program.toLowerCase());
-    if (isDuplicate) {
-        console.log("🚨 Chương trình đã tồn tại, không thể thêm!");
-        return;
-    }
+    if (rule)
+        if (isDuplicate) {
+            console.log("🚨 Chương trình đã tồn tại, không thể thêm!");
+            return;
+        }
 
     const newProgram = {
         Program: program
@@ -119,6 +135,7 @@ function addProgram() {
 function renameProgram() {
     const programs = loadProgram();
     const lastProgram = prompt("Nhập tên chương trình cũ: ").trim();
+    const rule = loadRule();
 
     for (let s of programs) {
         if (s.Program === lastProgram) {
@@ -127,6 +144,12 @@ function renameProgram() {
                 console.log("🚨 Không đổi tên chương trình do tên trống");
                 return;
             }
+            const isDuplicate = programs.some(d => d.Program.toLowerCase() === program.toLowerCase());
+            if (rule)
+                if (isDuplicate) {
+                    console.log("🚨 Chương trình đã tồn tại, không thể thêm!");
+                    return;
+                }
             savePrograms(programs);
             console.log("Cập nhật thành công!");
             return;
@@ -135,8 +158,22 @@ function renameProgram() {
     console.log("Không tìm thấy trạng thái!");
 }
 
+function changeRule() {
+    let rules = loadRule();
+
+    if (rules.length === 0) {
+        console.log("Không tìm thấy quy tắc nào trong file!");
+        return;
+    }
+
+    rules[0].value = !rules[0].value;
+
+    fs.writeFileSync(RULE_FILE, JSON.stringify(rules, null, 4), "utf-8");
+    console.log(`Quy tắc đã đổi thành: ${rules[0].value}`);
+}
+
 module.exports = {
     addDepartment, renameDepartment,
-    addStatus, renameStatus,
+    addStatus, renameStatus, changeRule,
     addProgram, renameProgram
 };

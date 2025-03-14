@@ -4,8 +4,6 @@ const nodemailer = require("nodemailer");
 const logger = require("./logger");
 require("dotenv").config();
 
-const STUDENT_FILE = path.join(__dirname, "../data", "students.json");
-
 // Cấu hình Gmail SMTP
 const transporter = nodemailer.createTransport({
     service: "gmail",

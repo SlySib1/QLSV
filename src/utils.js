@@ -7,6 +7,16 @@ const STUDENT_FILE = path.join(__dirname, "../data", "students.json");
 const STATUS_FILE = path.join(__dirname, "../data", "status.json");
 const DEPARTMENT_FILE = path.join(__dirname, "../data", "department.json");
 const PROGRAM_FILE = path.join(__dirname, "../data", "program.json");
+const RULE_FILE = path.join(__dirname, "../data", "rule.json");
+
+function loadRule() {
+    try {
+        const data = fs.readFileSync(RULE_FILE, "utf-8");
+        return JSON.parse(data);
+    } catch (error) {
+        return [];
+    }
+}
 
 function loadStudents() {
     try {
@@ -112,7 +122,7 @@ function isValidStudentStatus(currentStatus, newStatus) {
 }
 
 module.exports = {
-    loadStudents, loadStatus, loadDepartment, loadProgram,
+    loadStudents, loadStatus, loadDepartment, loadProgram, loadRule,
     saveDepartments, saveStatuses, savePrograms, saveStudents,
     isValidEmail, isValidPhone, isValidDepartment, isValidStudentStatus
 };
