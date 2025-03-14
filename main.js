@@ -4,6 +4,7 @@ const fs = require("fs");
 const { execSync } = require("child_process");
 const { addStudent, deleteStudent, updateStudent, searchStudent, searchStudentByDepartment, searchStudentByDepartmentAndName } = require("./src/student_manage");
 const { addDepartment, renameDepartment, addStatus, renameStatus, addProgram, renameProgram } = require("./src/data_manage");
+const { sendNotification } = require("./src/send_notification");
 
 function getGitVersion() {
     try {

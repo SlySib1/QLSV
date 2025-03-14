@@ -2,6 +2,7 @@ const fs = require("fs");
 const prompt = require("prompt-sync")();
 const { loadStudents, saveStudents, isValidEmail, isValidPhone,
     isValidDepartment, isValidStudentStatus } = require("./utils");
+const { sendEmailToStudent } = require("./send_notification");
 const path = require("path");
 
 const STUDENT_FILE = path.join(__dirname, "../data", "students.json");
@@ -83,35 +84,77 @@ function updateStudent() {
 
     for (let s of students) {
         if (s.MSSV === mssv) {
+            const oldData = s;
+            console.log("Nếu muốn giữ nguyên thông tin hãy chỉ nhấn enter.");
             s.Name = prompt("Nhập họ tên mới: ").trim();
+            if (!s.Name) {
+                s.Name = oldData.Name;
+                return;
+            }
             s.Dob = prompt("Nhập ngày tháng năm sinh mới (DD/MM/YYYY): ").trim();
+            if (!s.Dob) {
+                s.Dob = oldData.Dob;
+                return;
+            }
             s.Gender = prompt("Nhập giới tính mới (Nam/Nữ): ").trim();
+            if (!s.Gender) {
+                s.Gender = oldData.Gender;
+                return;
+            }
             s.Email = prompt("Nhập email mới: ").trim();
-            if (!isValidEmail(s.Email)) {
-                console.log("Email không hợp lệ!");
+            if (!s.Email) {
+                s.Email = oldData.Email;
                 return;
-            }
+            } else
+                if (!isValidEmail(s.Email)) {
+                    console.log("Email không hợp lệ!");
+                    return;
+                }
             s.Phone = prompt("Nhập số điện thoại mới: ").trim();
-            if (!isValidPhone(s.Phone)) {
-                console.log("Số điện thoại không hợp lệ!");
+            if (!s.Phone) {
+                s.Phone = oldData.Phone;
                 return;
-            }
+            } else
+                if (!isValidPhone(s.Phone)) {
+                    console.log("Số điện thoại không hợp lệ!");
+                    return;
+                }
             s.Department = prompt("Nhập khoa mới: ").trim();
-            if (!isValidDepartment(s.Department)) {
-                console.log("Tên khoa không hợp lệ!");
+            if (!s.Department) {
+                s.Department = oldData.Department;
                 return;
-            }
+            } else
+                if (!isValidDepartment(s.Department)) {
+                    console.log("Tên khoa không hợp lệ!");
+                    return;
+                }
             s.Corse = prompt("Nhập khóa mới: ").trim();
-            s.Program = prompt("Nhập chương trình mới: ").trim();
-            s.Address = prompt("Nhập địa chỉ mới: ").trim();
-            s.Status = prompt("Nhập tình trạng sinh viên mới: ").trim();
-            const newStatus = prompt("Nhập tình trạng sinh viên mới: ").trim();
-            if (!isValidStudentStatus(s.Status, newStatus)) {
-                console.log("Tình trạng sinh viên không hợp lệ!");
+            if (!s.Corse) {
+                s.Corse = oldData.Corse;
                 return;
             }
+            s.Program = prompt("Nhập chương trình mới: ").trim();
+            if (!s.Program) {
+                s.Program = oldData.Program;
+                return;
+            }
+            s.Address = prompt("Nhập địa chỉ mới: ").trim();
+            if (!s.Address) {
+                s.Address = oldData.Address;
+                return;
+            }
+            s.Status = prompt("Nhập tình trạng sinh viên mới: ").trim();
+            if (!s.Status) {
+                s.Status = oldData.Status;
+                return;
+            } else
+                if (!isValidStudentStatus(oldData.Status, s.Status)) {
+                    console.log("Tình trạng sinh viên không hợp lệ!");
+                    return;
+                }
             s.Status = newStatus;
             saveStudents(students);
+            sendEmailToStudent(s, oldData);
             console.log("Cập nhật thành công!");
             return;
         }
