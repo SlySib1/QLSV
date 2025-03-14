@@ -1,183 +1,82 @@
 const fs = require("fs");
 const prompt = require("prompt-sync")();
-const { loadDepartment, loadStatus, loadProgram, loadRule,
-    saveDepartments, saveStatuses, savePrograms } = require("./utils");
-const path = require("path");
+const {
+    loadDepartment, loadStatus, loadProgram, loadRule,
+    saveDepartments, saveStatuses, savePrograms
+} = require("./utils");
 
-function addDepartment() {
+function addEntity(loadFunc, saveFunc, entityName, keyName) {
     console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
-    const departments = loadDepartment();
-    const department = (prompt("Nhập tên của khoa mới: ") || "").trim();
+    const entities = loadFunc();
     const rule = loadRule();
 
-    if (!department) {
-        console.log("🚨 Không thêm khoa do tên trống");
+    const newValue = (prompt(`Nhập tên ${entityName} mới: `) || "").trim();
+    if (!newValue) {
+        console.log(`🚨 Không thêm ${entityName} do tên trống`);
         return;
     }
 
-    const isDuplicate = departments.some(d => d.Department.toLowerCase() === department.toLowerCase());
-    if (rule)
-        if (isDuplicate) {
-            console.log("🚨 Khoa đã tồn tại, không thể thêm!");
-            return;
-        }
-
-    const newDepartment = { Department: department };
-    departments.push(newDepartment);
-    saveDepartments(departments);
-    console.log("Đã thêm khoa thành công!");
-}
-
-function renameDepartment() {
-    console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
-    const departments = loadDepartment();
-    const lastDepartment = (prompt("Nhập tên cũ của khoa: ") || "").trim();
-    const rule = loadRule();
-
-    for (let s of departments) {
-        if (s.Department === lastDepartment) {
-            s.Department = (prompt("Nhập tên mới của khoa: ") || "").trim();
-            if (!s.Department) {
-                console.log("🚨 Không đổi tên khoa do tên trống");
-                return;
-            }
-
-            const isDuplicate = departments.some(d => d.Department.toLowerCase() === department.toLowerCase());
-            if (rule)
-                if (isDuplicate) {
-                    console.log("🚨 Khoa đã tồn tại, không thể đổi tên thành!");
-                    return;
-                }
-            saveDepartments(departments);
-            console.log("Cập nhật thành công!");
-            return;
-        }
-    }
-    console.log("Không tìm thấy khoa!");
-}
-
-function addStatus() {
-    console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
-    const statuses = loadStatus();
-    const status = (prompt("Nhập trạng thái mới: ") || "").trim();
-    const rule = loadRule();
-
-    if (!status) {
-        console.log("🚨 Không thêm trạng thái do tên trống");
+    if (rule && entities.some(e => e[keyName].toLowerCase() === newValue.toLowerCase())) {
+        console.log(`🚨 ${entityName} đã tồn tại, không thể thêm!`);
         return;
     }
 
-    const isDuplicate = statuses.some(d => d.Status.toLowerCase() === status.toLowerCase());
-    if (rule)
-        if (isDuplicate) {
-            console.log("🚨 trạng thái đã tồn tại, không thể thêm!");
-            return;
-        }
-
-    const newStatus = {
-        Status: status
-    };
-
-    statuses.push(newStatus);
-    saveStatuses(statuses);
-    console.log("Đã thêm trạng thái thành công!");
+    entities.push({ [keyName]: newValue });
+    saveFunc(entities);
+    console.log(`Đã thêm ${entityName} thành công!`);
 }
 
-function renameStatus() {
+function renameEntity(loadFunc, saveFunc, entityName, keyName) {
     console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
-    const statuses = loadStatus();
-    const lastStatus = prompt("Nhập trạng thái cũ: ").trim();
+    const entities = loadFunc();
     const rule = loadRule();
 
-    for (let s of statuses) {
-        if (s.Status === lastStatus) {
-            s.Status = (prompt("Nhập trạng thái mới: ") || "").trim();
-            if (!s.Status) {
-                console.log("🚨 Không đổi tên trạng thái do tên trống");
-                return;
-            }
-            const isDuplicate = statuses.some(d => d.Status.toLowerCase() === status.toLowerCase());
-            if (rule)
-                if (isDuplicate) {
-                    console.log("🚨 trạng thái đã tồn tại, không thể thêm!");
-                    return;
-                }
-            saveStatuses(statuses);
-            console.log("Cập nhật thành công!");
-            return;
-        }
-    }
-    console.log("Không tìm thấy trạng thái!");
-}
+    const oldValue = (prompt(`Nhập tên cũ của ${entityName}: `) || "").trim();
+    const entity = entities.find(e => e[keyName] === oldValue);
 
-function addProgram() {
-    console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
-    const programs = loadProgram();
-    const program = (prompt("Nhập tên chương trình mới: ") || "").trim();
-    const rule = loadRule();
-
-    if (!program) {
-        console.log("🚨 Không thêm chương trình do tên trống");
+    if (!entity) {
+        console.log(`🚨 Không tìm thấy ${entityName}!`);
         return;
     }
 
-    const isDuplicate = programs.some(d => d.Program.toLowerCase() === program.toLowerCase());
-    if (rule)
-        if (isDuplicate) {
-            console.log("🚨 Chương trình đã tồn tại, không thể thêm!");
-            return;
-        }
-
-    const newProgram = {
-        Program: program
-    };
-
-    programs.push(newProgram);
-    savePrograms(programs);
-    console.log("Đã thêm chương trình mới thành công!");
-}
-
-function renameProgram() {
-    console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
-    const programs = loadProgram();
-    const lastProgram = prompt("Nhập tên chương trình cũ: ").trim();
-    const rule = loadRule();
-
-    for (let s of programs) {
-        if (s.Program === lastProgram) {
-            s.Program = (prompt("Nhập tên chương trình mới: ") || "").trim();
-            if (!s.Program) {
-                console.log("🚨 Không đổi tên chương trình do tên trống");
-                return;
-            }
-            const isDuplicate = programs.some(d => d.Program.toLowerCase() === program.toLowerCase());
-            if (rule)
-                if (isDuplicate) {
-                    console.log("🚨 Chương trình đã tồn tại, không thể thêm!");
-                    return;
-                }
-            savePrograms(programs);
-            console.log("Cập nhật thành công!");
-            return;
-        }
+    const newValue = (prompt(`Nhập tên mới của ${entityName}: `) || "").trim();
+    if (!newValue) {
+        console.log(`🚨 Không đổi tên ${entityName} do tên trống`);
+        return;
     }
-    console.log("Không tìm thấy trạng thái!");
+
+    if (rule && entities.some(e => e[keyName].toLowerCase() === newValue.toLowerCase())) {
+        console.log(`🚨 ${entityName} đã tồn tại, không thể đổi tên thành!`);
+        return;
+    }
+
+    entity[keyName] = newValue;
+    saveFunc(entities);
+    console.log(`Cập nhật ${entityName} thành công!`);
 }
 
 function changeRule() {
     console.log("Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM");
     let rules = loadRule();
 
-    if (rules.length === 0) {
-        console.log("Không tìm thấy quy tắc nào trong file!");
+    if (!rules || rules.length === 0) {
+        console.log("🚨 Không tìm thấy quy tắc nào trong file!");
         return;
     }
 
     rules[0].rulesEnabled = !rules[0].rulesEnabled;
-
-    fs.writeFileSync(RULE_FILE, JSON.stringify(rules, null, 4), "utf-8");
-    console.log(`Quy tắc đã đổi thành: ${rules[0].rulesEnabled}`);
+    fs.writeFileSync("./data/rule.json", JSON.stringify(rules, null, 4), "utf-8");
+    console.log(`✅ Quy tắc đã đổi thành: ${rules[0].rulesEnabled}`);
 }
+
+const addDepartment = () => addEntity(loadDepartment, saveDepartments, "Khoa", "Department");
+const renameDepartment = () => renameEntity(loadDepartment, saveDepartments, "Khoa", "Department");
+
+const addStatus = () => addEntity(loadStatus, saveStatuses, "Trạng thái", "Status");
+const renameStatus = () => renameEntity(loadStatus, saveStatuses, "Trạng thái", "Status");
+
+const addProgram = () => addEntity(loadProgram, savePrograms, "Chương trình", "Program");
+const renameProgram = () => renameEntity(loadProgram, savePrograms, "Chương trình", "Program");
 
 module.exports = {
     addDepartment, renameDepartment,
