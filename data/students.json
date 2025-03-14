@@ -10,7 +10,8 @@
         "Corse": "2022",
         "Program": "clc",
         "Address": "12345679",
-        "Status": "Đang học"
+        "Status": "Đang học",
+        "createdAt": "2025-03-14T10:00:00.000Z"
     },
     {
         "MSSV": "22127310",
@@ -23,7 +24,8 @@
         "Corse": "2022",
         "Program": "clc",
         "Address": "98765432",
-        "Status": "Đang học"
+        "Status": "Đang học",
+        "createdAt": "2025-03-14T10:05:00.000Z"
     },
     {
         "MSSV": "22127311",
@@ -36,7 +38,8 @@
         "Corse": "2022",
         "Program": "chuẩn",
         "Address": "54321678",
-        "Status": "Đang học"
+        "Status": "Đang học",
+        "createdAt": "2025-03-14T10:10:00.000Z"
     },
     {
         "MSSV": "22127312",
@@ -49,7 +52,8 @@
         "Corse": "2022",
         "Program": "clc",
         "Address": "11223344",
-        "Status": "Đang học"
+        "Status": "Đang học",
+        "createdAt": "2025-03-14T10:15:00.000Z"
     },
     {
         "MSSV": "22127313",
@@ -62,7 +66,8 @@
         "Corse": "2022",
         "Program": "chuẩn",
         "Address": "55667788",
-        "Status": "Đang học"
+        "Status": "Đang học",
+        "createdAt": "2025-03-14T10:20:00.000Z"
     },
     {
         "MSSV": "22127314",
@@ -75,7 +80,8 @@
         "Corse": "2022",
         "Program": "chuẩn",
         "Address": "66778899",
-        "Status": "Đang học"
+        "Status": "Đang học",
+        "createdAt": "2025-03-14T10:25:00.000Z"
     },
     {
         "MSSV": "22127315",
@@ -88,7 +94,8 @@
         "Corse": "2022",
         "Program": "clc",
         "Address": "77889900",
-        "Status": "Đang học"
+        "Status": "Đang học",
+        "createdAt": "2025-03-14T10:30:00.000Z"
     },
     {
         "MSSV": "22127316",
@@ -101,7 +108,8 @@
         "Corse": "2022",
         "Program": "chuẩn",
         "Address": "88990011",
-        "Status": "Đang học"
+        "Status": "Đang học",
+        "createdAt": "2025-03-14T10:35:00.000Z"
     },
     {
         "MSSV": "22127317",
@@ -114,6 +122,7 @@
         "Corse": "2022",
         "Program": "clc",
         "Address": "99001122",
-        "Status": "Đang học"
+        "Status": "Đang học",
+        "createdAt": "2025-03-14T10:40:00.000Z"
     }
 ]

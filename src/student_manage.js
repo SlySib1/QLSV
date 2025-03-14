@@ -6,6 +6,7 @@ const { sendEmailToStudent } = require("./send_notification");
 const path = require("path");
 
 const STUDENT_FILE = path.join(__dirname, "../data", "students.json");
+const DELETE_LIMIT_MINUTES = 30;
 
 function addStudent() {
     const students = loadStudents();
@@ -68,10 +69,10 @@ function addStudent() {
 function deleteStudent() {
     const students = loadStudents();
     const mssv = prompt("Nhập MSSV cần xóa: ").trim();
-    const updatedStudents = students.filter(s => s.MSSV !== mssv);
+    const updatedStudents = students.filter(s => s.MSSV !== mssv && ((Date.now() - s.createdAt) / (1000 * 60) < DELETE_LIMIT_MINUTES));
 
     if (students.length === updatedStudents.length) {
-        console.log("Không tìm thấy sinh viên!");
+        console.log("Không tìm thấy sinh viên hoặc đã quá thời hạn xóa!");
     } else {
         saveStudents(updatedStudents);
         console.log("Xóa thành công!");
