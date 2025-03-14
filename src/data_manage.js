@@ -166,10 +166,10 @@ function changeRule() {
         return;
     }
 
-    rules[0].value = !rules[0].value;
+    rules[0].rulesEnabled = !rules[0].rulesEnabled;
 
     fs.writeFileSync(RULE_FILE, JSON.stringify(rules, null, 4), "utf-8");
-    console.log(`Quy tắc đã đổi thành: ${rules[0].value}`);
+    console.log(`Quy tắc đã đổi thành: ${rules[0].rulesEnabled}`);
 }
 
 module.exports = {
